@@ -21,7 +21,7 @@ static void *thread(void *idx)
         }
     }
     free(mem);
-    printf("%d => %llu\n", reinterpret_cast<int>(idx), tot);
+    printf("%llu => %llu\n", reinterpret_cast<unsigned long long>(idx), tot);
     return 0;
 }
 
@@ -45,8 +45,8 @@ int main(int argc, char **argv)
         }
     }
     pthread_t t[threads];
-    for (int i=0; i<threads; ++i) {
-        pthread_create(&t[i], 0, ::thread, reinterpret_cast<void*>(i));
+    for (unsigned long long i=0; i<threads; ++i) {
+        pthread_create(&t[i], 0, ::thread, reinterpret_cast<unsigned long long*>(i));
     }
     for (int i=0; i<threads; ++i) {
         pthread_join(t[i], 0);
