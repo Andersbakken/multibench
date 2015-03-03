@@ -45,8 +45,8 @@ int main(int argc, char **argv)
         }
     }
     pthread_t t[threads];
-    for (unsigned long long i=0; i<threads; ++i) {
-        pthread_create(&t[i], 0, ::thread, reinterpret_cast<unsigned long long*>(i));
+    for (int i=0; i<threads; ++i) {
+        pthread_create(&t[i], 0, ::thread, reinterpret_cast<void*>(i));
     }
     for (int i=0; i<threads; ++i) {
         pthread_join(t[i], 0);
