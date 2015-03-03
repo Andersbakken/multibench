@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <pthread.h>
-#if defined(__apple__)
+#if defined(__APPLE__)
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #endif
@@ -15,7 +15,7 @@ enum { MB = 1024 * 1024, Megs = 64, Size = Megs * MB };
 unsigned long long monoMs()
 {
     timeval time;
-#if defined(__apple__)
+#if defined(__APPLE__)
     static mach_timebase_info_data_t info;
     static bool first = true;
     uint64_t machtime = mach_absolute_time();
