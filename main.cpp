@@ -42,17 +42,17 @@ unsigned long long monoMs()
 
 static void *thread(void *thread)
 {
-    unsigned long long tot = 0;
-    unsigned long long idx = 0;
+    unsigned int tot = 0;
+    unsigned int idx = 0;
     for (int i=0; i<count; ++i) {
         for (int j=0; j<count; ++j) {
-            unsigned long long val = data[idx++ % Size];
+            unsigned int val = data[idx++ % Size];
             val >>= (i % 10) + 1;
             tot += val;
         }
     }
     if (!silent)
-        printf("%llu => %llu\n", reinterpret_cast<unsigned long long>(thread), tot);
+        printf("%llu => %u\n", reinterpret_cast<unsigned long long>(thread), tot);
     return 0;
 }
 
