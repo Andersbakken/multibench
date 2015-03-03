@@ -76,6 +76,7 @@ int main(int argc, char **argv)
         memcpy(data + (i * MB), mb, MB);
     }
 
+    const unsigned long long start = monoMs();
     int threads = 1;
     for (int i=1; i<argc; ++i) {
         if (!strncmp(argv[i], "--threads=", 10)) {
@@ -101,6 +102,8 @@ int main(int argc, char **argv)
     for (int i=0; i<threads; ++i) {
         pthread_join(t[i], 0);
     }
+    const unsigned long long duration = monoMs() - start;
+    printf("Total %llums\n", duration);
     free(data);
 
     return 0;
